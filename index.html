@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris Pereira | Creative Portfolio</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for a bright, casual, and elegant aesthetic */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Light background */
+            color: #1f2937; /* Dark text */
+        }
+        .text-accent {
+            color: #0d9488; /* Teal accent */
+        }
+        .bg-card {
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.2), 0 4px 6px -2px rgba(13, 148, 136, 0.05);
+        }
+        .gallery-item {
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            cursor: pointer; /* Added cursor pointer to indicate interactivity */
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        /* Style for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* New styles for the video container (optional, but good practice) */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .video-container::after {
+            /* Adding a slight transparent overlay to enhance text readability over the video */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md backdrop-blur-sm bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-extrabold text-gray-800">Chris Pereira <span class="text-accent">| Creative</span></a>
+                </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="text-gray-600 hover:text-accent px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#skills" class="text-gray-600 hover:text-accent px-3 py-2 rounded-md text-sm font-medium">Creative Skills</a>
+                        <a href="#gallery" class="text-gray-600 hover:text-accent px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                        <a href="#contact" class="text-gray-600 hover:text-accent px-3 py-2 rounded-md text-sm font-medium">Connect</a>
+                    </div>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#skills" class="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Creative Skills</a>
+                <a href="#gallery" class="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="#contact" class="text-gray-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section id="home" class="min-h-screen relative flex items-center justify-center text-center px-4 py-20 overflow-hidden">
+        
+        <!-- Video Background Element -->
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                <!-- 
+                    IMPORTANT: Replace 'bgvid.mp4' with the URL of your video file.
+                    It's highly recommended to use a short, optimized, and seamless looping video.
+                -->
+                <source src="bgvid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-10 max-w-4xl mx-auto space-y-8 p-10 rounded-xl bg-white/80 backdrop-blur-sm shadow-2xl">
+            <p class="text-lg text-gray-600 font-medium tracking-wider uppercase">Editor | Photographer | Designer | Passive Coder</p>
+            <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-gray-900">
+                Living life via  <span class="text-accent"> Smiles & Friends </span>.
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-700">
+                Welcome to my creative space. I capture moments, edit emotion, and design for impact, while I also crave laughter and fun
+		 as we go along!
+            </p>
+            <div class="pt-8 flex justify-center space-x-4">
+                <a href="#gallery" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-teal-700 transition duration-300">
+                    View My Work <i data-lucide="image" class="w-4 h-4 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-1">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <!-- Placeholder Image (use your personal photo here) -->
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <img src="me2.jpg" alt="Chris Pereira Profile" class="rounded-full shadow-2xl border-4 border-accent/50 w-64 h-64 object-cover">
+                </div>
+                <div class="w-full md:w-2/3 space-y-6 text-gray-700 text-lg">
+                    <p>
+                        I’m Chris Milbourn Pereira, a Computer Engineering student at Fr. Agnel’s College, Bandra.
+			Currently the Media director of Rotaract club of Fr.CRCE, Parent-Rotary Club of Bombay Bandra R.I.D 3141 - Zone 1
+                    </p>
+                    <p>
+                        I’m passionate about technology, creativity, and personal growth. Alongside my studies, I’m skilled in video editing, photography, and have been learning music for over 10 years.
+I’m also active in sports and believe in maintaining a healthy balance between work, creativity, and play.
+Outside of that, I love listening to music, spending time with my cat, playing videogames and travelling with friends — moments that keep me inspired and grounded.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                        <!-- UPDATED: Download Resume Button - Now using full bg-accent for immediate visibility -->
+                        <a href="ChrisResume.pdf" target="_blank" class="inline-flex items-center justify-center bg-accent text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition duration-300 shadow-md">
+                            Download Resume <i data-lucide="download" class="w-5 h-5 ml-2"></i>
+                        </a>
+                        <!-- Existing: Collaborate Button (Secondary Action) -->
+                        <a href="#contact" class="inline-flex items-center justify-center bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300 shadow-md">
+                            Collaborate With Me <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Skills Section -->
+    <section id="skills" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-1">Creative Toolkit</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                
+                <!-- Skill Card 1: Photography -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="camera" class="w-10 h-10 text-red-500 mb-3"></i>
+                    <h3 class="font-bold text-lg">Photography</h3>
+                    <p class="text-sm text-gray-500">Composition & Lighting</p>
+                </div>
+
+                <!-- Skill Card 2: Automation Scripting (Passive Coding) -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="file-code" class="w-10 h-10 text-green-600 mb-3"></i>
+                    <h3 class="font-bold text-lg">Passive Coding</h3>
+                    <p class="text-sm text-gray-500">Python, C++, Java script</p>
+                </div>
+
+                <!-- Skill Card 3: Photoshop -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="wand-2" class="w-10 h-10 text-cyan-500 mb-3"></i>
+                    <h3 class="font-bold text-lg">Photoshop</h3>
+                    <p class="text-sm text-gray-500">Retouching & Compositing</p>
+                </div>
+
+                <!-- Skill Card 4: Canva -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="paintbrush" class="w-10 h-10 text-purple-500 mb-3"></i>
+                    <h3 class="font-bold text-lg">Canva</h3>
+                    <p class="text-sm text-gray-500">Visuals & Layouts</p>
+                </div>
+
+                <!-- Skill Card 5: Visual Design -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="layout-grid" class="w-10 h-10 text-purple-600 mb-3"></i>
+                    <h3 class="font-bold text-lg">Visual Design</h3>
+                    <p class="text-sm text-gray-500">Branding </p>
+                </div>
+
+                <!-- Skill Card 6: Video Editing -->
+                <div class="bg-card p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <i data-lucide="film" class="w-10 h-10 text-gray-700 mb-3"></i>
+                    <h3 class="font-bold text-lg">Video Editing</h3>
+                    <p class="text-sm text-gray-500">Da Vinci Resolve, After Effects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section (Main Showcase) -->
+    <section id="gallery" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-1">Visual Showcase</h2>
+            
+            <!-- Category Tabs (Optional but good for organizing work) -->
+            <div class="flex justify-center space-x-4 mb-8">
+               
+                <button class="px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition">Photography</button>
+                <button class="px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition">Design</button>
+            </div>
+
+            <!-- Image Grid (using your original content as mockups) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Gallery Item 1: Landscape (Mountains) - Added onclick -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl" onclick="openModal(this)">
+                    <img src="mountains.jpg" alt="A snap of the wonderful ranges a little boy wanted to cherrish." class="w-full h-64 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Landscape: Mahabaleshwar</h3>
+                        <p class="text-sm text-gray-600">A snap of the wonderful ranges a little boy wanted to cherrish.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2: Urban Photo (Sealink) - Added onclick -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl" onclick="openModal(this)">
+                    <img src="sealink.jpg" alt="Night photograph of Bandra Sealink. The back to normal lifestyle after a week of fierce storms." class="w-full h-64 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Urban: Sealink Calmness</h3>
+                        <p class="text-sm text-gray-600">The back to normal lifestyle after a week of fierce storms.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3: Long Exposure (Starry Skies) - Added onclick -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl" onclick="openModal(this)">
+                    <img src="starryskies.jpg" alt="The stillness of the night. My proudest long exposure shot." class="w-full h-64 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Long Exposure: A sky full of stars</h3>
+                        <p class="text-sm text-gray-600">My proudest landscape shot, focusing on scale and light.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4: Design Project (Mockup) - Added onclick -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl" onclick="openModal(this)">
+                    <img src="GP11.png" alt="Awareness poster design." class="w-full h-64 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Design: Poster </h3>
+                        <p class="text-sm text-gray-600">Awareness poster design. (Figma).</p>
+                    </div>
+                </div>
+                
+                
+                <!-- Gallery Item 6: Video Showcase (Motion Reel) - NOTE: Removed onclick to allow direct video playback -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl">
+                    <div class="p-0 rounded-t-xl overflow-hidden">
+                        <video 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline 
+                            poster="5days.png" 
+                            class="w-full h-64 object-cover" 
+                            title="Countdown reel"
+                            onvolumechange="this.muted=true" 
+                            onplay="this.muted=true"
+                        >
+                            <!-- IMPORTANT: Replace this with the path to your video file (e.g., 'motion_reel.mp4') -->
+                            <source src="Scene.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Animation : After Effects </h3>
+                        <p class="text-sm text-gray-600">Short example of animations.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 7: Video Showcase (Motion Reel) -->
+                <div class="gallery-item bg-card rounded-xl shadow-xl">
+                    <div class="p-0 rounded-t-xl overflow-hidden">
+                        <video controls loop muted poster="5days.png" class="w-full h-64 object-cover" title="Countdown reel">
+                            <!-- IMPORTANT: Replace this with the path to your video file (e.g., 'motion_reel.mp4') -->
+                            <source src="5days.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-accent">Countdown reel: Da Vinci Resolve</h3>
+                        <p class="text-sm text-gray-600">Lastest sample of my work.</p>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4 border-b-2 border-accent inline-block pb-1">Let's Connect</h2>
+            <p class="text-gray-700 text-lg mb-12">
+                Whether it's a paid shoot, a design collaboration, or just connecting with fellow creatives, I'd love to hear from you. Reach out directly below.
+            </p>
+
+            <div class="flex flex-col items-center space-y-8">
+                
+                <!-- Direct Email CTA (Replaces the form) -->
+                <div class="bg-card p-8 rounded-xl shadow-2xl w-full max-w-lg hover:ring-2 ring-accent transition duration-300">
+                    <i data-lucide="mail" class="w-12 h-12 text-accent mb-4 mx-auto"></i>
+                    <p class="text-xl font-semibold text-gray-800 mb-4">Have a project, idea, or just want to chat?</p>
+                    <a href="mailto:chrispereira1811@gmail.com" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-teal-700 transition duration-300">
+                        Email Chris <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Direct Contact Info -->
+                <div class="flex flex-wrap justify-center gap-6 p-4">
+                    <div class="flex items-center space-x-2 text-gray-700">
+                        <i data-lucide="phone" class="w-5 h-5 text-accent"></i>
+                        <a href="tel:+91 7620516046" class="hover:text-accent font-medium">+91 7620516046</a>
+                    </div>
+                    <div class="flex items-center space-x-2 text-gray-700">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-accent"></i>
+                        <span class="font-medium">Vasai, Maharashtra, India</span>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="bg-card p-6 rounded-xl shadow-xl w-full max-w-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Find Me Online</h3>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.instagram.com/chrispereira_cp18/" target="_blank" class="text-gray-700 hover:text-accent transition duration-300">
+                            <i data-lucide="instagram" class="w-8 h-8"></i>
+                        </a>
+                       
+                        <a href="https://github.com/chris-pereira-tech" target="_blank" class="text-gray-700 hover:text-accent transition duration-300" title="My Technical Work">
+                            <i data-lucide="github" class="w-8 h-8"></i>
+                        </a>
+                        <!-- Add more social links as needed (e.g., LinkedIn, ArtStation) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-gray-300 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 Chris Pereira. Portfolio.</p>
+    </footer>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-90 z-[100] hidden items-center justify-center p-4 transition-opacity duration-300">
+        <div class="relative max-w-5xl max-h-full">
+            <!-- Close Button -->
+            <button onclick="closeModal(event)" class="absolute top-4 right-4 text-white text-3xl font-bold opacity-75 hover:opacity-100 z-20 focus:outline-none">
+                &times;
+            </button>
+            <!-- Modal Image -->
+            <img id="modal-image-content" src="" alt="" class="max-h-[90vh] w-auto rounded-lg shadow-2xl">
+            <!-- Caption -->
+            <div id="modal-caption" class="text-white text-center text-lg mt-3 p-2 rounded-b-lg select-none"></div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Mobile Menu, Icon Initialization, and Modal Logic -->
+    <script>
+        // Lucide Icons initialization
+        lucide.createIcons();
+
+        // Mobile Menu Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+
+            // Toggle menu visibility
+            button.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            // Hide menu when a link is clicked (for better UX on single-page sites)
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+        });
+
+        // --- Modal (Lightbox) Logic ---
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image-content');
+        const modalCaption = document.getElementById('modal-caption');
+
+        /**
+         * Opens the modal with the content of the clicked gallery item.
+         * @param {HTMLElement} element - The .gallery-item div that was clicked.
+         */
+        window.openModal = function(element) {
+            // Check if the clicked element is an image container (not the video container)
+            const img = element.querySelector('img');
+            if (!img) return; // Do nothing if it's the video element
+            
+            // Get data from the clicked image
+            const title = element.querySelector('h3').textContent;
+            const description = element.querySelector('p').textContent;
+            
+            // Populate modal content
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalCaption.textContent = title + ' — ' + description;
+
+            // Display the modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        /**
+         * Closes the modal if the click was on the background or the close button.
+         * @param {Event} event - The click event.
+         */
+        window.closeModal = function(event) {
+            // Check if the click was directly on the modal background or the close button
+            if (event.target === modal || event.target.closest('button')) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+        
+        // Add listener to close modal on Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('flex')) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
