@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chris Pereira — Creative Portfolio</title>
+<title>Chris Pereira — Portfolio</title>
 <meta name="description" content="Chris Pereira — Editor, Photographer, Designer. Mumbai, India.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +83,7 @@ body.cursor-hover .c-ring{width:52px;height:52px;border-color:var(--red)}
 .hero-title span:nth-child(1){animation-delay:.25s}
 .hero-title span:nth-child(2){animation-delay:.38s;color:var(--amber)}
 .hero-title span:nth-child(3){animation-delay:.51s}
-.hero-desc{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3vw,2rem);line-height:1.25;letter-spacing:-.01em;color:var(--fg2);max-width:520px;opacity:0;animation:fadeUp .7s ease .78s forwards}.hero-cta{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);border:1px solid rgba(232,228,219,.2);padding:.8rem 2.4rem;text-decoration:none;opacity:0;animation:fadeUp .7s ease 1s forwards;transition:background .3s,color .3s,border-color .3s}
+.hero-desc{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3vw,2rem);line-height:1.25;letter-spacing:-.01em;color:var(--#d0d0d0);max-width:520px;opacity:0;animation:fadeUp .7s ease .78s forwards}.hero-cta{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);border:1px solid rgba(232,228,219,.2);padding:.8rem 2.4rem;text-decoration:none;opacity:0;animation:fadeUp .7s ease 1s forwards;transition:background .3s,color .3s,border-color .3s}
 .hero-cta:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .hero-scroll{position:absolute;bottom:3.4rem;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,228,219,.2);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:pulse 2.5s ease-in-out infinite}
 .hero-scroll::after{content:'';display:block;width:1px;height:26px;background:linear-gradient(to bottom,rgba(232,228,219,.22),transparent)}
@@ -305,14 +305,14 @@ body.cursor-hover .c-ring{width:52px;height:52px;border-color:var(--red)}
 .ph-topbar-left{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2)}
 .ph-count{position:absolute;top:.9rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2)}
 /* CARDS */
-.ph-stage{display:flex;height:100%;align-items:center;padding:0 2.5vw;gap:1.2vw;padding-top:52px}
+.ph-stage{display:flex;height:100%;align-items:center;padding:0 2.5vw;gap:1.2vw;padding-top:52px;contain:layout paint}
 .ph-card{flex-shrink:0;height:82%;position:relative;overflow:hidden;border:1px solid rgba(232,228,219,.06);transition:width .6s cubic-bezier(.16,1,.3,1),filter .6s,opacity .6s;cursor:pointer}
 .ph-card:not(.ph-active){filter:brightness(.4);opacity:.65}
 .ph-card.ph-active{filter:brightness(1);opacity:1;border-color:rgba(232,228,219,.14)}
-.ph-card:not(.ph-active):hover{filter:brightness(.6);opacity:.85}
-.ph-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(30%);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .6s}
+.ph-card{flex-shrink:0;height:82%;position:relative;overflow:hidden;border:1px solid rgba(232,228,219,.06);transition:width .6s cubic-bezier(.16,1,.3,1),filter .6s,opacity .6s;cursor:pointer;contain:layout paint style;will-change:width}
+.ph-bg{position:absolute;top:0;left:50%;right:auto;bottom:0;height:100%;background-size:cover;background-position:center;filter:grayscale(30%);transition:filter .6s;transform:translateX(-50%);will-change:filter}
 .ph-card.ph-active .ph-bg{filter:grayscale(0%)}
-.ph-card:hover .ph-bg{transform:scale(1.04)}
+.ph-card:hover .ph-bg{transform:translateX(-50%) scale(1.04)}
 .ph-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.06) 45%,rgba(0,0,0,.92) 100%)}
 /* scan corners */
 .ph-corner{position:absolute;width:14px;height:14px;border-color:var(--red);border-style:solid;opacity:0;transition:opacity .4s .15s}
@@ -1093,6 +1093,13 @@ footer{border-top:1px solid var(--border);padding:1.4rem 3rem;display:flex;justi
 </script>
 <script src="fluid.js"></script>
 <script>
+/* ── PRELOAD PHOTO IMAGES ── */
+(function(){
+  document.querySelectorAll('.ph-bg').forEach(el=>{
+    const m = el.style.backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+    if(m && m[1]){ const img=new Image(); img.src=m[1]; }
+  });
+})();
 /* ── CURSOR ── */
 const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing');
 let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
@@ -1256,13 +1263,16 @@ phCards.forEach((_,i)=>{
 });
 function layoutPhotoCards(){
   const n=phCards.length;
-  const stagePadding=0.05*window.innerWidth*2; // 2.5vw each side
-  const gapTotal=0.012*window.innerWidth*(n-1); // 1.2vw gaps
+  const stagePadding=0.05*window.innerWidth*2;
+  const gapTotal=0.012*window.innerWidth*(n-1);
   const activeW=Math.min(0.36*window.innerWidth, 620);
   const available=window.innerWidth-stagePadding-gapTotal-activeW;
   const inactiveW=Math.max(available/(n-1), 70);
   phCards.forEach(c=>{
-    c.style.width=(c.classList.contains('ph-active')?activeW:inactiveW)+'px';
+    const w = c.classList.contains('ph-active') ? activeW : inactiveW;
+    c.style.width = w+'px';
+    const bg = c.querySelector('.ph-bg');
+    if(bg) bg.style.width = activeW+'px'; // always sized to full/active width — never rescales during transition
   });
 }
 function setPhoto(i){
